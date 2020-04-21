@@ -101,9 +101,21 @@ export default class YAxisView extends View {
     this._ctx.font = getFont(tickText.size, tickText.family)
     this._ctx.fillStyle = tickText.color
     this._yAxis.ticks().forEach(tick => {
+      if (this.isNumber(parseFloat(tick.v))) {
+        let tickValueFloat = parseFloat(tick.v)
+        if (tickValueFloat < 1) {
+          const tickFormatPrecision = formatPrecision(parseFloat(tick.v), this._chartData.precisionOptions().price)
+          this._ctx.fillText(tickFormatPrecision, labelX, tick.y)
+          return
+        }
+      }
       this._ctx.fillText(tick.v, labelX, tick.y)
     })
     this._ctx.textAlign = 'left'
+  }
+
+  isNumber(value) {
+    return typeof value === 'number' && !isNaN(value);
   }
 
   /**
