@@ -155,7 +155,11 @@ export default class TechnicalIndicatorFloatLayerView extends View {
     this._ctx.fillText(nameText, labelX, labelY)
     labelX += (textMarginLeft + nameTextWidth)
     for (let i = 0; i < labels.length; i++) {
-      const text = `${labels[i].toUpperCase()}: ${values[i] || '--'}`
+      // ruby's change
+      let text = `${labels[i].toUpperCase()}: ${values[i] || '--'}`
+      if (labels[i].toUpperCase() === 'NUM') {
+        text = `${values[i] || '--'}`
+      }
       const textWidth = calcTextWidth(this._ctx, text)
       this._ctx.fillStyle = colors[i % colorSize] || textColor
       this._ctx.fillText(text, labelX, labelY)
