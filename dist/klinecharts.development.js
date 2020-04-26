@@ -4817,7 +4817,7 @@ var YAxisView = /*#__PURE__*/function (_View) {
         if (_this3.isNumber(parseFloat(tick.v))) {
           var tickValueFloat = parseFloat(tick.v);
 
-          if (tickValueFloat < 1) {
+          if (tickValueFloat < 10000) {
             var tickFormatPrecision = formatPrecision(parseFloat(tick.v), _this3._chartData.precisionOptions().price);
 
             _this3._ctx.fillText(tickFormatPrecision, labelX, tick.y);
