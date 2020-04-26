@@ -103,7 +103,7 @@ export default class YAxisView extends View {
     this._yAxis.ticks().forEach(tick => {
       if (this.isNumber(parseFloat(tick.v))) {
         let tickValueFloat = parseFloat(tick.v)
-        if (tickValueFloat < 1) {
+        if (tickValueFloat < 10000) {
           const tickFormatPrecision = formatPrecision(parseFloat(tick.v), this._chartData.precisionOptions().price)
           this._ctx.fillText(tickFormatPrecision, labelX, tick.y)
           return
